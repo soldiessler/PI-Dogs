@@ -6,8 +6,10 @@ const postDog = async (req, res) => {
     let [newDog, d] = await Dog.findOrCreate({
       where: {
         name: dog.name, 
-        height: dog.height,
-        weight: dog.weight,
+        min_height: dog.min_height,
+        max_height: dog.max_height,
+        min_weight: dog.min_weight,
+        max_weight: dog.max_weight,
         life_span: dog.life_span,
         image: dog.image,
         created: true,

@@ -8,8 +8,10 @@ const apiDogs = async() => {
     return {
       id: d.id,
       name: d.name, 
-      height: d.height.metric,
-      weight: d.weight.metric,
+      min_height: parseInt(d.height.metric.split(" - ")[1]),
+      max_height: parseInt(d.height.metric.split(" - ")[1]),
+      min_weight: parseInt(d.weight.metric.split(" - ")[0]),
+      max_weight: parseInt(d.weight.metric.split(" - ")[1]),
       life_span: d.life_span,
       image: d.image.url,
       temperament: d?.temperament?.split(', '),

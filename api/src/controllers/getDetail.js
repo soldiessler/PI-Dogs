@@ -44,8 +44,10 @@ const getDetail = async (req, res) => {
       const dogID = {
         id: dog.id,
         name: dog.name,
-        weight: dog.weight,
-        height: dog.hight,
+        min_height: parseInt(dog.height.metric.split(" - ")[0]),
+        max_height: parseInt(dog.height.metric.split(" - ")[1]),
+        min_weight: parseInt(dog.weight.metric.split(" - ")[0]),
+        max_weight: parseInt(dog.weight.metric.split(" - ")[1]),
         life_span: dog.life_span,
         temperament:
           dog?.temperament?.split(', '),
