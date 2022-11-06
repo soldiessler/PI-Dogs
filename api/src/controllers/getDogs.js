@@ -14,14 +14,14 @@ const apiDogs = async() => {
       max_weight: parseInt(d.weight.metric.split(" - ")[1]),
       life_span: d.life_span,
       image: d.image.url,
-      temperament: d?.temperament?.split(', '),
+      temperament: d?.temperament?.split(', ').join(' ') || "Unknow",
     }
   })
   return apiDogs
 }
 
 const dbDogs = async() => {
-  const dbDogs = await Dog.findAll({
+  let dbDogs = await Dog.findAll({
     include: {
       model: Temperament,
       attributes: {
@@ -32,6 +32,21 @@ const dbDogs = async() => {
       }
     }
   })
+
+  dbDogs = dbDogs.map(d => {
+    return{
+      id: d.id,
+      name: d.name, 
+      min_height: d.min_height,
+      max_height: d.max_height,
+      min_weight: d.min_weight,
+      max_weight: d.max_weight,
+      life_span: d.life_span,
+      image: d.image,
+      temperament: d.temperaments.map(t => {return t.name}).join(' '),
+    }
+  })
+
   return dbDogs;
 }
 
@@ -40,7 +55,7 @@ const getDogs = async (req, res) => {
 
   const api = await apiDogs();
   const db = await dbDogs();
-  const dogs = await api.concat(db);
+  const dogs = await db.concat(api);
 
   try {
   if (name) {

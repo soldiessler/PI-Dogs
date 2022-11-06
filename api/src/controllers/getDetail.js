@@ -7,7 +7,7 @@ const getDetail = async (req, res) => {
   //db
   if (id.length === 36 && id.includes("-")) {
     try {
-      const db = await Dog.findAll({
+      const dbDogs = await Dog.findAll({
         include: {
           model: Temperament,
           attributes: {
@@ -16,6 +16,20 @@ const getDetail = async (req, res) => {
           through: {
             attributes:[]
           }
+        }
+      })
+
+      let db = dbDogs.map(d => {
+        return{
+          id: d.id,
+          name: d.name, 
+          min_height: d.min_height,
+          max_height: d.max_height,
+          min_weight: d.min_weight,
+          max_weight: d.max_weight,
+          life_span: d.life_span,
+          image: d.image,
+          temperament: d.temperaments.map(t => {return t.name}).join(' '),
         }
       })
 
@@ -50,7 +64,7 @@ const getDetail = async (req, res) => {
         max_weight: parseInt(dog.weight.metric.split(" - ")[1]),
         life_span: dog.life_span,
         temperament:
-          dog?.temperament?.split(', '),
+          dog?.temperament?.split(', ').join(' ') || "Unknow",
         image: dog?.image?.url || dog?.image,
       };
 

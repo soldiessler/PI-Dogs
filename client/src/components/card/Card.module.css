@@ -1,0 +1,53 @@
+.card{
+  text-decoration: none;
+  margin: 30px 0px 0px 15px;
+  background-color: var(--white);
+  color: var(--black);
+  height: 142px;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  border-radius: 500px;
+}
+
+.dog_pic {
+  padding: 0.8rem;
+  object-fit: cover;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  filter: grayscale(100%);
+}
+
+.card_name {
+  margin: 1rem;
+  padding: 0;
+  font-size: 12px;
+}
+
+.card_temperaments {
+  
+  margin: 1rem;  
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card_weight {
+  margin: 1rem;
+  font-size: 11px;
+}
+
+
+.card:hover{
+  cursor: pointer;
+  background-color: var(--light-color);
+  box-shadow: 0 0 5px 2px var(--dark-color) inset;
+}
+
+.card:hover .card_name{
+  text-decoration: underline;
+}
+.card:hover .dog_pic {
+  filter: grayscale(0%);
+  filter: saturate(200%);
+}
