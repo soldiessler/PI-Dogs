@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDogs, sortByName, getTemperaments, sortByWeight, filterByTemperament, filterByCreated } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import Header from "../header/Header"
 import SearchBar from "../searchBar/SearchBar";
 import Card from "../card/Card";
 import Pagination from "../pagination/Pagination";
-import { Link } from "react-router-dom";
-
+import Footer from "../footer/Footer";
 import style from "./Home.module.css"
+
 
 export default function Home(){
   const dispatch = useDispatch(); 
@@ -51,53 +53,52 @@ export default function Home(){
   }
 
   return(
-    <div>
-      <h2 className={style.brand}>DOGS</h2>
+    <div className={style.page}>
+      <Header/>
+      
+      <div className={style.nav}>
+        <div>
+          <select className={style.select} defaultValue="alp" onChange={(e)=> handleSortByName(e)}>
+            <option className={style.option} value="alp" disabled selected>Order by name</option>
+            <option className={style.option} value="asc">A-Z</option>
+            <option className={style.option} value="des">Z-A</option>
+          </select>
+        </div>
 
-      <div className={style.row}>
-       <div className={style.sort}>
-        <select className={style.select} onChange={(e)=> handleSortByName(e)}>
-          <option className={style.option} value="asc">A-Z</option>
-          <option className={style.option} value="des">Z-A</option>
-        </select>
-      </div>
-
-        <div className={style.sort}>
-          <select className={style.select} onChange={(e)=> handleSortByWeight(e)}>
-          <option className={style.option} disabled>Weight</option>
+        <div>
+          <select className={style.select} defaultValue="weight" onChange={(e)=> handleSortByWeight(e)}>
+            <option className={style.option} value="weight" disabled selected>Order by weight</option>
             <option className={style.option} value="min">Min Weight</option>
             <option className={style.option} value="max">Max Weight</option>
           </select>
         </div>
       
-        <div className={style.sort}>
+        <div>
           <select className={style.select} onChange={(e)=> handleFilterByCreated(e)}>
-             <option className={style.option} value="all">All</option>
+            <option className={style.option} value="all">All</option>
             <option className={style.option} value="db">Created</option>
             <option className={style.option} value="api">Api</option>
           </select>
         </div>
 
-        <div className={style.sort_by_temp}>
-          <select className={style.select_by_temp} onChange={(e)=> handleFilterByTemperament(e)}>
+        <div>
+          <select className={style.select} onChange={(e)=> handleFilterByTemperament(e)}>
             <option key={1} className={style.option} value="all">Temperaments</option>
-            {
-              temperaments.map(temp =>(
+            {temperaments.map(temp =>(
                 <option key={temp.id} className={style.option} value={temp.name} >{temp.name}</option>
-              ))
-            }
+              ))}
           </select>
         </div>
-      
-      <Link to={"/create"}>
-        <button className={style.btn_create}>Create your Breed</button>
-      </Link>
-      <SearchBar /> 
+
+        <Link to={"/create"} className={style.create}>Create your Breed</Link>
+        <SearchBar />
+
       </div>
+
       <div className={style.container}>
         {currentDogs?
         currentDogs.map((d, i) => 
-        <div key={i} className={style.cards_container}>
+        <div key={i}>
           <Card 
             key={i}
             id={d.id} 
@@ -110,18 +111,16 @@ export default function Home(){
         </div>
         ) : 
         (<h1>Loading Dogs</h1>)}
-       <Pagination dogsPerPage={dogsPerPage} dogs={filtred.length} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
       </div>
+      
+      <Pagination 
+        dogsPerPage={dogsPerPage} 
+        dogs={filtred.length} 
+        setCurrentPage={setCurrentPage} 
+        currentPage={currentPage}
+      />
 
+      <Footer/>
     </div>
   )
 }
-
-//i = index: posicion del perrito entre los perritos
-
-//<//Pagination
-//        dogs = {filtred.length} //cantidad de perritos
- //       dogsPerPage = {dogsPerPage} //cantidad de perritos por pagina
- //       setCurrentPage = {setCurrentPage}
- //       currentPage = {currentPage} //pagina actual
-  //    />

@@ -1,0 +1,11 @@
+.header {
+  padding: 2rem;
+}
+
+.brand {
+  font-weight: bold;
+  color: var(--white);
+  font-size: 3.5rem;
+  margin-left: 2rem;
+  text-decoration: none;
+}

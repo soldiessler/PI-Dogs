@@ -1,34 +1,27 @@
+.pagination {
+  text-align: center;
+}
+
+.btn, .btn_a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0.7rem;
+  border-color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
 
 .btn {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 1rem;
   background: var(--black);
   color: var(--white);
-  border-color: var(--white);
-  font-size: 1.2rem;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  box-shadow: inset 0 0 0 0 var(--white);
-  transition: ease-out 0.4s;
 }
-
 .btn_a {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  margin: 0rem 1rem;
   background: var(--white);
   color: var(--black);
-  border-color: var(--white);
-  font-size: 1.2rem;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  box-shadow: inset 0 0 0 0 var(--white);
-  transition: ease-out 0.4s;
 }
-
+  
 .btn:hover {
   color: var(--black);
   box-shadow: inset 600px 0 0 0 var(--white);

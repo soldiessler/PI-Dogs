@@ -24,15 +24,20 @@
 
 .sb_input::placeholder { 
   color: var(--dark-color);
-  opacity: 1; /* Firefox */
+  opacity: 1;
 }
 
-.searchbar_ico {
+.searchbar_icon {
   margin: 0 1rem ;
   width: 50%;
   border: 0;
   cursor: pointer;
   background-color: transparent;
+  opacity: 80%;
+}
+
+.searchbar:hover .searchbar_icon{
+  opacity: 100%;
 }
 
 .searchbar:hover {

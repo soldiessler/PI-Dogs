@@ -13,6 +13,9 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: /^[a-zA-Z ]*$/,
+      },
     },
     min_height: {
       type: DataTypes.INTEGER,
@@ -30,17 +33,18 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    life_span: {
-      type: DataTypes.STRING,
+    min_life: {
+      type: DataTypes.INTEGER,
+    },
+    max_life: {
+      type: DataTypes.INTEGER,
     },
     image: {
       type: DataTypes.STRING,
-    },
-    created: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
     }
-  });
+  },
+  { timestamps : false }
+  );
 };
 
 /*[ ] Raza con las siguientes propiedades:

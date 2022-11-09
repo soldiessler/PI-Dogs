@@ -1,0 +1,10 @@
+.footer {
+  padding: 1rem;
+  margin-right: 3rem;
+  text-align: right;
+}
+
+.footer_text {
+  color: var(--white);
+  font-size: 0.7rem;
+}

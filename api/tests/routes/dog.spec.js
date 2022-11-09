@@ -7,9 +7,13 @@ const { Dog, conn } = require('../../src/db.js');
 const agent = session(app);
 const dog = {
   name: 'Pug',
+  min_height: 10,
+  max_height: 40,
+  min_weight: 60,
+  max_weight: 80,
 };
 
-describe('Videogame routes', () => {
+describe('routes', () => {
   before(() => conn.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
@@ -19,6 +23,21 @@ describe('Videogame routes', () => {
   describe('GET /dogs', () => {
     it('should get 200', () =>
       agent.get('/dogs').expect(200)
+    );
+  });
+
+  describe('GET /dogs/:id', () => {
+    it('should get 200', () =>
+      agent.get('/dogs/1').expect(200)
+    );
+    it('if the id does not exist should get 404', () =>
+      agent.get('/dogs/asd').expect(404)
+    );
+  });
+
+  describe('GET /temperaments', () => {
+    it('should get 200', () =>
+      agent.get('/temperaments').expect(200)
     );
   });
 });

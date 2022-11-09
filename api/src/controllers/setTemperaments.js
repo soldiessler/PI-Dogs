@@ -19,8 +19,8 @@ const setTemperaments = async (req, res) => {
       })
     })
 
-  } catch(e) {
-    console.log(e)
+  } catch(error) {
+    return res.status(404).send({error: 'Temperaments loading fail'})
   }
 };
 

@@ -9,7 +9,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
     },
-  });
+  },
+  { timestamps : false }
+  );
 };
 
 /*[ ] Temperamento con las siguientes propiedades:
