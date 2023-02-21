@@ -8,3 +8,14 @@
   color: var(--white);
   font-size: 0.7rem;
 }
+
+.footer_link:visited {
+  color: var(--white);
+}
+
+.footer_link:hover {
+  cursor: pointer;
+  color: var(--medium-color);  
+  font-size: 0.8rem;
+  transition: 0.4s;
+}
